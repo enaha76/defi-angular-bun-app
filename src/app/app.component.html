@@ -1,0 +1,46 @@
+<div class="bg-green-50 text-gray-800 font-sans h-screen flex items-center justify-center relative w-full h-full">
+  <!-- Video Background -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute top-0 left-0 w-full h-full object-cover z-0">
+    <source src="vid/terre2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Content Overlay -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center text-white space-y-6 h-full px-4">
+    <h1 class="text-5xl font-extrabold text-green-400 drop-shadow-lg tracking-wide" style="font-family: 'Roboto', sans-serif;">
+      Carbone Compass
+    </h1>
+    <p class="text-lg text-blue-200 drop-shadow-lg italic">
+      Paste a link to analyze CO₂ levels in a specific area.
+    </p>
+    <div class="space-y-4 w-full max-w-md">
+      <input
+        type="text"
+        [(ngModel)]="link"
+        placeholder="Enter the link here"
+        class="w-full px-4 py-2 border-2 border-blue-100 bg-gray-200 text-gray-800 placeholder-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300 transition-shadow shadow-md"
+      />
+      <button
+        (click)="searchCO2()"
+        class="w-full bg-gradient-to-r from-green-600 via-blue-600 to-teal-600 text-white px-6 py-2 rounded-lg shadow-lg hover:from-green-700 hover:via-blue-700 hover:to-teal-700 focus:ring-4 focus:ring-blue-300 transition-transform transform hover:scale-105 font-semibold">
+        Search CO₂ Data
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" [ngClass]="{'show': isModalVisible}">
+    <div class="modal-content">
+      <button (click)="closeModal()" class="close-btn">&times;</button>
+      <h2 class="text-2xl font-bold text-gray-800">CO₂ Level Result</h2>
+      <p class="text-lg text-gray-700 mt-4">{{modalContent}}</p>
+      <div class="emoji">{{modalEmoji}}</div>
+      <img [src]="modalGifSrc" class="gif" alt="">
+    </div>
+  </div>
+</div>
